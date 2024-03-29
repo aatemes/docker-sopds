@@ -9,7 +9,6 @@ ARG FB2C_ARM64=https://github.com/rupor-github/fb2converter/releases/latest/down
 RUN apk add --no-cache -U unzip \
     && unzip /sopds.zip && rm /sopds.zip && mv sopds-*/* ./
 
-#COPY requirements.txt .
 COPY scripts/fb2conv /fb2conv
 COPY scripts/superuser.exp .
 
@@ -60,6 +59,7 @@ COPY --from=build-stage /usr/local/lib/python3.10/site-packages/ /usr/local/lib/
 COPY scripts/start.sh /start.sh
 
 RUN apk add --no-cache -U bash libxml2 libxslt libffi libjpeg zlib postgresql expect \
+    && ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
     && chmod +x /start.sh
 
 WORKDIR /sopds
