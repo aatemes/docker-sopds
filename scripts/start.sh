@@ -63,4 +63,10 @@ then
 python3 manage.py sopds_telebot start --daemon
 fi
 
+#Get genre from fixtures/genre.json in Genre table
+if [ ! -f /sopds/genre.done ]
+then
+    python3 manage.py sopds_util clear
+    echo "DONE" > /sopds/genre.done
+fi
 python3 manage.py sopds_server start & python3 manage.py sopds_scanner start
