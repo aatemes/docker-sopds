@@ -63,6 +63,12 @@ then
 python3 manage.py sopds_telebot start --daemon
 fi
 
+#Generate randon secret key
+if [ ! -f /sopds/secret.key ]
+then
+    base64 /dev/urandom | head -c50 > /sopds/secret.key
+fi
+
 #Get genre from fixtures/genre.json in Genre table
 if [ ! -f /sopds/genre.done ]
 then
