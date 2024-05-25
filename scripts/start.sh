@@ -70,9 +70,9 @@ then
 fi
 
 #Get genre from fixtures/genre.json in Genre table
-if [ ! -f /sopds/genre.done ]
+if [ ! -f /var/lib/pgsql/genre.done ]
 then
     python3 manage.py sopds_util clear
-    echo "DONE" > /sopds/genre.done
+    echo "DONE" > /var/lib/pgsql/genre.done
 fi
 python3 manage.py sopds_server start & python3 manage.py sopds_scanner start
