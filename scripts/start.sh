@@ -63,10 +63,11 @@ then
 python3 manage.py sopds_telebot start --daemon
 fi
 
-#Generate randon secret key
+#If new Image Version, generate randon secret key and set custom timezone from -e TIME_ZONE.
 if [ ! -f /sopds/secret.key ]
 then
     base64 /dev/urandom | head -c50 > /sopds/secret.key
+    ln -s /usr/share/zoneinfo/"$TIME_ZONE" /etc/localtime
 fi
 
 #Get genre from fixtures/genre.json in Genre table
