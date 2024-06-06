@@ -13,8 +13,6 @@ COPY scripts/fb2conv /fb2conv
 COPY scripts/superuser.exp .
 
 RUN apk add --no-cache -U tzdata build-base libxml2-dev libxslt-dev postgresql-dev libffi-dev libc-dev jpeg-dev zlib-dev curl \
-    && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
-    && echo "Europe/Berlin" > /etc/timezone \
     && pip3 install --upgrade pip setuptools 'psycopg2-binary>=2.8,<2.9' \
     && pip3 install --upgrade -r requirements.txt \
     && if [ $(uname -m) = "aarch64" ]; then \
@@ -59,7 +57,6 @@ COPY --from=build-stage /usr/local/lib/python3.10/site-packages/ /usr/local/lib/
 COPY scripts/start.sh /start.sh
 
 RUN apk add --no-cache -U bash libxml2 libxslt libffi libjpeg zlib postgresql expect \
-    && ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
     && chmod +x /start.sh
 
 WORKDIR /sopds
