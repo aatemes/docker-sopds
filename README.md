@@ -14,10 +14,10 @@ docker volume create mysopds_pgsql
 ```
 docker run -d --name mysopds \
     --publish 8001:8001 \
-    --env TIME_ZONE="Europe/Berlin" \ 
+    --env TIME_ZONE="Europe/Moscow" \ 
     --volume /path/to/library:/library:ro \
     --volume mysopds_pgsql:/var/lib/pgsql \
-    ichbinkirgiz/sopds:latest
+    aatemes/sopds:latest
 ```
 > [!WARNING]
 > При первом запуске контейнера, даже если у вас был свой volume с готовой коллекцией книг, эта коллекция будет стёрта.
@@ -26,9 +26,6 @@ docker run -d --name mysopds \
 
 Кроме того контейнер создаст свой уникальный SECRET_KEY, а то юзаем один ключ на всех.<br>
 К сожалению отключить DEBUG не получается.
-
-По умолчанию в контейнере устанавливается берлинское время. Если есть необходимость поменять, укажите желаемый часовой пояс в переменной TIME_ZONE.
-<a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List" target="_blank">Тётя Вика вам в помощь.</a>
 
 **===================================================================================**
 
