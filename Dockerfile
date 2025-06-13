@@ -2,7 +2,7 @@ FROM python:3.10.9-alpine3.16 AS build-stage
 
 WORKDIR /sopds
 
-ADD https://github.com/ichbinkirgiz/sopds/archive/refs/heads/master.zip /sopds.zip
+ADD https://github.com/aatemes/sopds/archive/refs/heads/master.zip /sopds.zip
 ARG FB2C_I386=https://github.com/rupor-github/fb2converter/releases/latest/download/fb2c-linux-386.zip
 ARG FB2C_ARM64=https://github.com/rupor-github/fb2converter/releases/latest/download/fb2c-linux-arm64.zip
 
@@ -40,7 +40,7 @@ ENV DB_USER="sopds" \
     DB_HOST="" \
     DB_PORT="" \
     EXT_DB="False" \
-    TIME_ZONE="Europe/Berlin" \
+    TIME_ZONE="Europe/Moscow" \
     SOPDS_ROOT_LIB="/library" \
     SOPDS_INPX_ENABLE="True" \
     SOPDS_LANGUAGE="ru-RU" \
